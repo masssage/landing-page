@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serenity Massage</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #f7f0e6;
+    --warm: #e8d5b7;
+    --sage: #7a9e7e;
+    --deep: #2c3e2d;
+    --gold: #c4972a;
+    --brown: #6b4c2a;
+    --text: #3a2e22;
+    --light-text: #7a6a57;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 18px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(247,240,230,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,151,42,0.2);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--deep);
+    letter-spacing: 1px;
+  }
+  .logo span { color: var(--gold); font-style: italic; }
+  .nav-cta {
+    background: var(--deep);
+    color: var(--cream);
+    padding: 10px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f7f0e6 0%, #ede0cc 50%, #dfc9a8 100%);
+    padding-top: 80px;
+  }
+
+  .hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+    background: var(--sage);
+  }
+  .circle-1 { width: 600px; height: 600px; top: -200px; right: -200px; }
+  .circle-2 { width: 400px; height: 400px; bottom: -150px; left: -100px; background: var(--gold); opacity: 0.06; }
+
+  .leaf {
+    position: absolute;
+    width: 180px; opacity: 0.12;
+    animation: sway 6s ease-in-out infinite alternate;
+  }
+  .leaf-1 { top: 10%; left: 5%; transform: rotate(-20deg); }
+  .leaf-2 { bottom: 15%; right: 3%; transform: rotate(30deg) scaleX(-1); animation-delay: 2s; }
+
+  @keyframes sway { from { transform: rotate(-20deg); } to { transform: rotate(-10deg) translateY(-10px); } }
+
+  .hero-content {
+    text-align: center;
+    position: relative; z-index: 2;
+    animation: fadeUp 1s ease both;
+    padding: 20px;
+  }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(122,158,126,0.15);
+    border: 1px solid var(--sage);
+    color: var(--sage);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.1;
+    color: var(--deep);
+    margin-bottom: 20px;
+    animation: fadeUp 1s ease 0.3s both;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    max-width: 480px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+    font-weight: 300;
+    animation: fadeUp 1s ease 0.4s both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 1s ease 0.5s both;
+  }
+
+  .btn-primary {
+    background: var(--deep);
+    color: var(--cream);
+    padding: 15px 34px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: all 0.3s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(196,151,42,0.3); }
+
+  .btn-tg {
+    background: #2AABEE;
+    color: #fff;
+    padding: 15px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.3s;
+  }
+  .btn-tg:hover { background: #1a96d4; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(42,171,238,0.35); }
+
+  .btn-wa {
+    background: #25D366;
+    color: #fff;
+    padding: 15px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.3s;
+  }
+  .btn-wa:hover { background: #1ebe5d; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(37,211,102,0.35); }
+
+  .hero-scroll {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--light-text); font-size: 0.75rem; letter-spacing: 2px;
+    text-transform: uppercase; animation: bounce 2s ease-in-out infinite;
+  }
+  .hero-scroll div { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(6px);} }
+
+  /* STATS */
+  .stats {
+    background: var(--deep);
+    padding: 50px 40px;
+    display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;
+  }
+  .stat { text-align: center; color: var(--cream); }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label { font-size: 0.8rem; opacity: 0.6; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 6px; }
+
+  /* ABOUT */
+  .about {
+    padding: 100px 40px;
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .about-visual { position: relative; height: 380px; }
+  .about-card {
+    position: absolute;
+    background: var(--warm);
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+  }
+  .about-card.main { width: 260px; height: 260px; top: 0; left: 0; background: linear-gradient(135deg, var(--sage) 0%, var(--deep) 100%); }
+  .about-card.secondary { width: 200px; height: 200px; bottom: 0; right: 0; background: linear-gradient(135deg, var(--gold) 0%, var(--brown) 100%); }
+  .about-card.accent { width: 100px; height: 100px; top: 50%; right: 30%; background: var(--cream); border: 2px solid var(--warm); font-size: 1.8rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+  .section-tag {
+    font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--sage); font-weight: 500; margin-bottom: 12px; display: block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--deep);
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+  .section-title em { color: var(--gold); font-style: italic; }
+  .section-body { color: var(--light-text); line-height: 1.8; font-weight: 300; margin-bottom: 30px; }
+
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .feature-list li {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--text); font-size: 0.95rem;
+  }
+  .feature-list li::before {
+    content: '✓';
+    width: 26px; height: 26px;
+    background: linear-gradient(135deg, var(--sage), var(--deep));
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: bold; flex-shrink: 0;
+  }
+
+  /* SERVICES */
+  .services {
+    background: linear-gradient(180deg, #ede0cc 0%, var(--cream) 100%);
+    padding: 100px 40px;
+  }
+  .services-header { text-align: center; margin-bottom: 60px; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .service-card {
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 36px 28px;
+    text-align: center;
+    border: 1px solid rgba(196,151,42,0.15);
+    transition: all 0.4s;
+    position: relative; overflow: hidden;
+    cursor: pointer;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--deep), var(--sage));
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 0;
+  }
+  .service-card:hover::before { opacity: 1; }
+  .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(44,62,45,0.2); }
+  .service-card:hover .s-icon, .service-card:hover .s-name, .service-card:hover .s-desc { color: white; }
+
+  .s-icon { font-size: 2.6rem; margin-bottom: 18px; display: block; position: relative; z-index: 1; transition: color 0.4s; }
+  .s-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--deep); margin-bottom: 10px; position: relative; z-index: 1; transition: color 0.4s; }
+  .s-desc { font-size: 0.85rem; color: var(--light-text); line-height: 1.6; position: relative; z-index: 1; transition: color 0.4s; }
+  .s-badge { display: inline-block; background: var(--gold); color: white; font-size: 0.7rem; padding: 3px 10px; border-radius: 10px; margin-bottom: 12px; position: relative; z-index: 1; }
+
+  /* HOW IT WORKS */
+  .how { padding: 100px 40px; max-width: 900px; margin: 0 auto; text-align: center; }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 30px; margin-top: 60px;
+    position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute; top: 36px; left: 15%; right: 15%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .step { text-align: center; }
+  .step-num {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, var(--deep), var(--sage));
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 8px 24px rgba(44,62,45,0.25);
+    position: relative; z-index: 1;
+  }
+  .step-title { font-size: 0.95rem; font-weight: 500; color: var(--deep); margin-bottom: 6px; }
+  .step-desc { font-size: 0.82rem; color: var(--light-text); line-height: 1.5; }
+
+  /* LEAD FORM */
+  .lead {
+    background: linear-gradient(135deg, var(--deep) 0%, #1a2e1b 100%);
+    padding: 100px 40px;
+    position: relative; overflow: hidden;
+  }
+  .lead::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c4972a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .lead-inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+  .lead .section-tag { color: var(--gold); }
+  .lead .section-title { color: var(--cream); }
+  .lead .section-body { color: rgba(247,240,230,0.65); }
+
+  .lead-form { display: flex; flex-direction: column; gap: 14px; margin-top: 36px; }
+  .lead-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .lead-form input, .lead-form select {
+    background: rgba(247,240,230,0.08);
+    border: 1px solid rgba(247,240,230,0.15);
+    color: var(--cream);
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+  }
+  .lead-form input::placeholder { color: rgba(247,240,230,0.35); }
+  .lead-form select option { background: var(--deep); color: var(--cream); }
+  .lead-form input:focus, .lead-form select:focus { border-color: var(--gold); }
+
+  .submit-btn {
+    background: linear-gradient(135deg, var(--gold), #d4a830);
+    color: var(--deep);
+    border: none;
+    padding: 17px;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 0.3px;
+  }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(196,151,42,0.4); }
+
+  .contact-btns {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .tg-alt {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: #2AABEE;
+    text-decoration: none;
+    font-size: 0.88rem;
+    padding: 10px 22px;
+    border: 1px solid #2AABEE;
+    border-radius: 30px;
+    transition: all 0.3s;
+  }
+  .tg-alt:hover { background: #2AABEE; color: white; }
+
+  .wa-alt {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: #25D366;
+    text-decoration: none;
+    font-size: 0.88rem;
+    padding: 10px 22px;
+    border: 1px solid #25D366;
+    border-radius: 30px;
+    transition: all 0.3s;
+  }
+  .wa-alt:hover { background: #25D366; color: white; }
+
+  /* FOOTER */
+  footer {
+    background: #1a1f1a;
+    padding: 40px;
+    text-align: center;
+    color: rgba(247,240,230,0.4);
+    font-size: 0.82rem;
+  }
+  footer a { color: var(--gold); text-decoration: none; margin: 0 6px; }
+
+  .footer-social { display: flex; justify-content: center; gap: 14px; margin: 14px 0; }
+  .fsoc {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s;
+  }
+  .fsoc.tg { color: #2AABEE; border-color: #2AABEE33; }
+  .fsoc.tg:hover { background: #2AABEE22; }
+  .fsoc.wa { color: #25D366; border-color: #25D36633; }
+  .fsoc.wa:hover { background: #25D36622; }
+
+  /* MOBILE */
+  @media (max-width: 700px) {
+    nav { padding: 16px 20px; }
+    .about { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px; }
+    .about-visual { height: 220px; }
+    .about-card.main { width: 160px; height: 160px; }
+    .about-card.secondary { width: 130px; height: 130px; }
+    .about-card.accent { width: 70px; height: 70px; }
+    .stats { gap: 30px; padding: 40px 20px; }
+    .services { padding: 60px 20px; }
+    .how { padding: 60px 20px; }
+    .steps::before { display: none; }
+    .lead { padding: 60px 20px; }
+    .lead-row { grid-template-columns: 1fr; }
+    footer { padding: 30px 20px; }
+    .hero h1 { font-size: 2.4rem; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .contact-btns { flex-direction: column; align-items: center; }
+  }
+
+  .success-msg {
+    display: none;
+    background: rgba(122,158,126,0.2);
+    border: 1px solid var(--sage);
+    color: #7ae082;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Luxury Massage</div>
+  <a href="#book" class="nav-cta">Book Now →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-circle circle-1"></div>
+  <div class="hero-bg-circle circle-2"></div>
+  <svg class="leaf leaf-1" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 10 C20 80, 10 200, 100 290 C190 200, 180 80, 100 10Z" fill="#7a9e7e"/>
+    <line x1="100" y1="10" x2="100" y2="290" stroke="#2c3e2d" stroke-width="2"/>
+  </svg>
+  <svg class="leaf leaf-2" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 10 C20 80, 10 200, 100 290 C190 200, 180 80, 100 10Z" fill="#c4972a"/>
+    <line x1="100" y1="10" x2="100" y2="290" stroke="#6b4c2a" stroke-width="2"/>
+  </svg>
+
+  <div class="hero-content">
+    <span class="hero-badge">🌿 Professional Wellness</span>
+    <h1>Relax. Refresh.<br><em>Rejuvenate.</em></h1>
+    <p>Experience safe, professional massage therapies designed for deep stress relief and total body relaxation — by trained experts.</p>
+    <div class="hero-btns">
+      <a href="#book" class="btn-primary">Book Your Session</a>
+      <a href="https://t.me/NAVYA_REDDY" target="_blank" class="btn-tg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Telegram
+       </a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div></div></div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Happy Clients</span></div>
+  <div class="stat"><span class="stat-num">4</span><span class="stat-label">Expert Services</span></div>
+  <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Hygienic Setup</span></div>
+  <div class="stat"><span class="stat-num">5★</span><span class="stat-label">Avg Rating</span></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-visual">
+    <div class="about-card main">🌿</div>
+    <div class="about-card secondary">💆</div>
+    <div class="about-card accent">✨</div>
+  </div>
+  <div class="about-text">
+    <span class="section-tag">About Us</span>
+    <h2 class="section-title">Your <em>wellness</em> is our commitment</h2>
+    <p class="section-body">We provide professional massage services focused on relaxation, recovery, and overall well-being. Our environment is clean, our therapists are trained, and your comfort is always the priority.</p>
+    <ul class="feature-list">
+      <li>Trained & certified professionals</li>
+      <li>Hygienic, sanitized setup</li>
+      <li>Respectful, private service</li>
+      <li>Easy online,Telegram booking</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="services-header">
+    <span class="section-tag">Our Services</span>
+    <h2 class="section-title">Choose Your <em>Treatment</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="s-badge">Most Popular</span>
+      <span class="s-icon">🌊</span>
+      <div class="s-name">Relaxation Massage</div>
+      <p class="s-desc">Full-body gentle strokes to melt away stress and promote deep calm.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-icon">💪</span>
+      <div class="s-name">Deep Tissue Therapy</div>
+      <p class="s-desc">Targets muscle knots and chronic tension with firm, focused pressure.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-icon">🧠</span>
+      <div class="s-name">Head & Shoulder Massage</div>
+      <p class="s-desc">Relieves headaches, neck pain and mental fatigue in just 30 minutes.</p>
+    </div>
+    <div class="service-card">
+      <span class="s-icon">🦶</span>
+      <div class="s-name">Foot Reflexology</div>
+      <p class="s-desc">Pressure points on the feet that revitalize your entire body and organs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <span class="section-tag">How It Works</span>
+  <h2 class="section-title">Book in <em>4 Simple Steps</em></h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-title">Choose Service</div><p class="step-desc">Pick the massage that suits your needs</p></div>
+    <div class="step"><div class="step-num">2</div><div class="step-title">Select Time</div><p class="step-desc">Pick a date and time that works for you</p></div>
+    <div class="step"><div class="step-num">3</div><div class="step-title">Confirm Booking</div><p class="step-desc">We confirm your session instantly</p></div>
+    <div class="step"><div class="step-num">4</div><div class="step-title">Enjoy Session</div><p class="step-desc">Arrive, relax, and feel rejuvenated</p></div>
+  </div>
+</section>
+
+<!-- LEAD FORM -->
+<section class="lead" id="book">
+  <div class="lead-inner">
+    <span class="section-tag">Book Your Session</span>
+    <h2 class="section-title">Ready to <em>Relax?</em></h2>
+    <p class="section-body">Fill the form below and we'll confirm your appointment within minutes. Or reach us directly on Telegram.</p>
+
+    <div class="lead-form" id="leadForm">
+      <div class="lead-row">
+        <input type="text" placeholder="Your Name *" id="fname">
+        <input type="tel" placeholder="Phone Number *" id="fphone">
+      </div>
+      <input type="email" placeholder="Email Address (optional)" id="femail">
+      <select id="fservice">
+        <option value="">Select a Service *</option>
+        <option>Relaxation Massage</option>
+        <option>Deep Tissue Therapy</option>
+        <option>Head & Shoulder Massage</option>
+        <option>Foot Reflexology</option>
+      </select>
+      <input type="text" placeholder="Preferred Date & Time *" id="ftime">
+      <button class="submit-btn" onclick="submitLead()"> Book My Session Now</button>
+    </div>
+    <div class="success-msg" id="successMsg">
+       Thank you! We've received your booking request. We'll contact you shortly to confirm your session.
+    </div>
+
+    <div class="contact-btns">
+      <a href="https://t.me/yourusername" target="_blank" class="tg-alt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#2AABEE"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Telegram Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-family:'Playfair Display',serif; font-size:1.1rem; color:rgba(247,240,230,0.5); margin-bottom:12px;">Serenity Massage</p>
+  <div class="footer-social">
+    <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="fsoc wa">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://t.me/yourusername" target="_blank" class="fsoc tg">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#2AABEE"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Telegram
+    </a>
+  </div>
+  <p>© 2025 Serenity Massage. All rights reserved.</p>
+</footer>
+
+<script>
+function submitLead() {
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  const service = document.getElementById('fservice').value;
+  const time = document.getElementById('ftime').value.trim();
+  if (!name || !phone || !service || !time) {
+    alert('Please fill in all required fields (*)');
+    return;
+  }
+  document.getElementById('leadForm').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+}
+</script>
+</body>
+</html>
